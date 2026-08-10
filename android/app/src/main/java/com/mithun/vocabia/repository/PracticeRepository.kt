@@ -116,4 +116,26 @@ class PracticeRepository(context: Context) {
         val finished = db.progressDao().finishedCount()
         return finished to total
     }
+
+    data class CategoryStats(val category: String, val finished: Int, val learning: Int, val new: Int, val total: Int)
+
+    suspend fun statsByCategory(): List<CategoryStats> {
+        val words = db.wordDao().getAll()
+        val progressByWord = db.progressDao().getAll().associateBy { it.wordId }
+
+        return words.groupBy { it.category }.map { (category, wordsInCategory) ->
+            var finished = 0
+            var learning = 0
+            var new = 0
+            wordsInCategory.forEach { word ->
+                val progress = progressByWord[word.id]
+                when {
+                    progress == null -> new++
+                    progress.status == STATUS_FINISHED -> finished++
+                    else -> learning++
+                }
+            }
+            CategoryStats(category, finished, learning, new, wordsInCategory.size)
+        }.sortedByDescending { it.total }
+    }
 }

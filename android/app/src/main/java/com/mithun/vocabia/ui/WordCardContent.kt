@@ -5,12 +5,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -47,7 +50,7 @@ fun WordCardContent(word: WordEntity, revealCount: Int) {
     val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     if (isLandscape) {
-        Row(modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(20.dp)) {
+        Row(modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(24.dp)) {
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -61,7 +64,7 @@ fun WordCardContent(word: WordEntity, revealCount: Int) {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .padding(start = 16.dp)
+                    .padding(start = 20.dp)
                     .verticalScroll(rememberScrollState())
             ) {
                 BodyBlock(word, revealed, accent)
@@ -72,7 +75,7 @@ fun WordCardContent(word: WordEntity, revealCount: Int) {
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
-                .padding(20.dp),
+                .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             HeaderBlock(word, revealed, accent)
@@ -86,10 +89,11 @@ private fun HeaderBlock(word: WordEntity, revealed: Set<String>, accent: Color) 
     CategoryChip(word.category, accent)
     Text(
         text = word.word,
-        fontSize = 34.sp,
+        fontSize = 36.sp,
+        lineHeight = 42.sp,
         fontWeight = FontWeight.Bold,
         textAlign = TextAlign.Center,
-        modifier = Modifier.padding(top = 10.dp)
+        modifier = Modifier.padding(top = 14.dp)
     )
     if ("article" in revealed && word.article != null) {
         Text(
@@ -98,16 +102,16 @@ private fun HeaderBlock(word: WordEntity, revealed: Set<String>, accent: Color) 
             color = accent,
             fontWeight = FontWeight.SemiBold,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(top = 2.dp)
+            modifier = Modifier.padding(top = 4.dp)
         )
     }
 
     if ("meaning" in revealed) {
         Text(
             text = word.translation,
-            fontSize = 18.sp,
+            fontSize = 19.sp,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth().padding(top = 12.dp)
+            modifier = Modifier.fillMaxWidth().padding(top = 14.dp)
         )
     }
 
@@ -118,14 +122,14 @@ private fun HeaderBlock(word: WordEntity, revealed: Set<String>, accent: Color) 
         Section(title = "Examples", accent = accent) {
             Column {
                 for (i in 0 until revealedSentenceCount) {
-                    if (i > 0) androidx.compose.foundation.layout.Spacer(Modifier.padding(top = 6.dp))
-                    Text(text = "${i + 1}. ${sentences[i]}", fontSize = 15.sp)
+                    if (i > 0) Spacer(Modifier.padding(top = 8.dp))
+                    Text(text = "${i + 1}. ${sentences[i]}", fontSize = 15.sp, lineHeight = 21.sp)
                     translations[i]?.let {
                         Text(
                             text = it,
                             fontSize = 13.sp,
                             color = Color.Gray,
-                            modifier = Modifier.padding(top = 2.dp, bottom = 8.dp)
+                            modifier = Modifier.padding(top = 3.dp, bottom = 10.dp)
                         )
                     }
                 }
@@ -145,15 +149,26 @@ private fun BodyBlock(word: WordEntity, revealed: Set<String>, accent: Color) {
 
 @Composable
 private fun CategoryChip(category: String, accent: Color) {
-    Text(
-        text = categoryLabel(category).uppercase(),
-        color = Color.White,
-        fontSize = 12.sp,
-        fontWeight = FontWeight.Bold,
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .background(accent, RoundedCornerShape(50))
-            .padding(horizontal = 12.dp, vertical = 4.dp)
-    )
+            .padding(horizontal = 14.dp, vertical = 6.dp)
+    ) {
+        Icon(
+            imageVector = categoryIcon(category),
+            contentDescription = null,
+            tint = Color.White,
+            modifier = Modifier.size(14.dp)
+        )
+        Text(
+            text = categoryLabel(category).uppercase(),
+            color = Color.White,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(start = 6.dp)
+        )
+    }
 }
 
 @Composable
@@ -161,16 +176,16 @@ private fun Section(title: String, accent: Color, content: @Composable () -> Uni
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 16.dp)
-            .background(accent.copy(alpha = 0.08f), RoundedCornerShape(12.dp))
-            .padding(12.dp)
+            .padding(top = 18.dp)
+            .background(accent.copy(alpha = 0.08f), RoundedCornerShape(14.dp))
+            .padding(14.dp)
     ) {
         Text(
             text = title.uppercase(),
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
             color = accent,
-            modifier = Modifier.padding(bottom = 6.dp)
+            modifier = Modifier.padding(bottom = 8.dp)
         )
         content()
     }

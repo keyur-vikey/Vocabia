@@ -9,9 +9,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -139,6 +145,28 @@ private fun SwipeableTopCard(
     ) {
         Box(modifier = Modifier.fillMaxSize().background(dragTint)) {
             WordCardContent(word = word, revealCount = revealCount)
+            SwipeIndicator(offsetX = offsetX.value, offsetY = offsetY.value)
         }
+    }
+}
+
+@Composable
+private fun SwipeIndicator(offsetX: Float, offsetY: Float) {
+    val progress = (maxOf(abs(offsetX), abs(offsetY)) / SWIPE_THRESHOLD_PX).coerceIn(0f, 1f)
+    if (progress < 0.05f) return
+
+    val (icon, tint) = when {
+        offsetY > abs(offsetX) && offsetY > 0 -> Icons.Filled.Star to Color(0xFFFACC15)
+        offsetX > 0 -> Icons.Filled.Check to Color(0xFF22C55E)
+        else -> Icons.Filled.Close to Color(0xFFEF4444)
+    }
+
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = tint.copy(alpha = progress),
+            modifier = Modifier.size(96.dp)
+        )
     }
 }

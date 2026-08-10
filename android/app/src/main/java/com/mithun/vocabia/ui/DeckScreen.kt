@@ -2,9 +2,15 @@ package com.mithun.vocabia.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,6 +41,8 @@ fun DeckScreen() {
     var currentIndex by remember { mutableIntStateOf(0) }
     var finishedCount by remember { mutableIntStateOf(0) }
     var totalCount by remember { mutableIntStateOf(0) }
+    var showStats by remember { mutableStateOf(false) }
+    var categoryStats by remember { mutableStateOf<List<PracticeRepository.CategoryStats>>(emptyList()) }
 
     suspend fun loadNewSession() {
         repository.advanceSession()
@@ -51,18 +59,37 @@ fun DeckScreen() {
         loading = false
     }
 
+    LaunchedEffect(showStats) {
+        if (showStats) {
+            categoryStats = repository.statsByCategory()
+        }
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
         if (loading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             return@Box
         }
 
+        if (showStats) {
+            StatsScreen(categoryStats = categoryStats, onBack = { showStats = false })
+            return@Box
+        }
+
         Column(modifier = Modifier.fillMaxSize()) {
-            Text(
-                text = "Finished: $finishedCount / $totalCount",
-                style = MaterialTheme.typography.labelLarge,
-                modifier = Modifier.padding(16.dp)
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Finished: $finishedCount / $totalCount",
+                    style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.weight(1f)
+                )
+                IconButton(onClick = { showStats = true }) {
+                    Icon(Icons.Filled.BarChart, contentDescription = "Progress")
+                }
+            }
 
             Box(modifier = Modifier.fillMaxSize()) {
                 if (currentIndex >= cards.size) {

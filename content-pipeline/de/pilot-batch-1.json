@@ -1,0 +1,272 @@
+[
+  {
+    "id": "de-0001", "language": "de", "base_language": "en",
+    "word": "Mann", "article": "der", "translation": "man",
+    "category": "noun", "frequency_rank": 1, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Der Mann liest eine Zeitung.", "Ich kenne diesen Mann nicht.", "Der Mann arbeitet in einer Bank."],
+    "sentence_translations": ["The man is reading a newspaper.", "I don't know this man.", "The man works at a bank."],
+    "noun_info": { "plural": "Männer", "gender": "masculine" }
+  },
+  {
+    "id": "de-0002", "language": "de", "base_language": "en",
+    "word": "Frau", "article": "die", "translation": "woman",
+    "category": "noun", "frequency_rank": 2, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Die Frau trinkt einen Kaffee.", "Ich habe die Frau gestern gesehen.", "Die Frau spricht drei Sprachen."],
+    "sentence_translations": ["The woman is drinking a coffee.", "I saw the woman yesterday.", "The woman speaks three languages."],
+    "noun_info": { "plural": "Frauen", "gender": "feminine" }
+  },
+  {
+    "id": "de-0003", "language": "de", "base_language": "en",
+    "word": "Kind", "article": "das", "translation": "child",
+    "category": "noun", "frequency_rank": 3, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Das Kind spielt im Garten.", "Sie hat zwei Kinder.", "Das Kind schläft schon."],
+    "sentence_translations": ["The child is playing in the garden.", "She has two children.", "The child is already sleeping."],
+    "noun_info": { "plural": "Kinder", "gender": "neuter" }
+  },
+  {
+    "id": "de-0004", "language": "de", "base_language": "en",
+    "word": "Haus", "article": "das", "translation": "house",
+    "category": "noun", "frequency_rank": 4, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Das Haus ist sehr groß.", "Wir kaufen ein neues Haus.", "Das Haus hat einen schönen Garten."],
+    "sentence_translations": ["The house is very big.", "We are buying a new house.", "The house has a beautiful garden."],
+    "noun_info": { "plural": "Häuser", "gender": "neuter" }
+  },
+  {
+    "id": "de-0005", "language": "de", "base_language": "en",
+    "word": "Zeit", "article": "die", "translation": "time",
+    "category": "noun", "frequency_rank": 5, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich habe keine Zeit.", "Die Zeit vergeht schnell.", "Wir brauchen mehr Zeit."],
+    "sentence_translations": ["I have no time.", "Time passes quickly.", "We need more time."],
+    "noun_info": { "plural": "Zeiten", "gender": "feminine" }
+  },
+  {
+    "id": "de-0006", "language": "de", "base_language": "en",
+    "word": "Tag", "article": "der", "translation": "day",
+    "category": "noun", "frequency_rank": 6, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Heute ist ein schöner Tag.", "Ich arbeite jeden Tag.", "Der Tag hat 24 Stunden."],
+    "sentence_translations": ["Today is a beautiful day.", "I work every day.", "The day has 24 hours."],
+    "noun_info": { "plural": "Tage", "gender": "masculine" }
+  },
+  {
+    "id": "de-0007", "language": "de", "base_language": "en",
+    "word": "Jahr", "article": "das", "translation": "year",
+    "category": "noun", "frequency_rank": 7, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich wohne seit einem Jahr hier.", "Nächstes Jahr reisen wir nach Deutschland.", "Das Jahr hat zwölf Monate."],
+    "sentence_translations": ["I have lived here for a year.", "Next year we're traveling to Germany.", "The year has twelve months."],
+    "noun_info": { "plural": "Jahre", "gender": "neuter" }
+  },
+  {
+    "id": "de-0008", "language": "de", "base_language": "en",
+    "word": "Welt", "article": "die", "translation": "world",
+    "category": "noun", "frequency_rank": 8, "cefr_level": "A2", "reviewed": false,
+    "sentences": ["Die Welt ist groß.", "Er will die Welt sehen.", "Diese Stadt ist bekannt auf der ganzen Welt."],
+    "sentence_translations": ["The world is big.", "He wants to see the world.", "This city is known all over the world."],
+    "noun_info": { "plural": "Welten", "gender": "feminine" }
+  },
+  {
+    "id": "de-0009", "language": "de", "base_language": "en",
+    "word": "Mensch", "article": "der", "translation": "person, human",
+    "category": "noun", "frequency_rank": 9, "cefr_level": "A2", "reviewed": false,
+    "sentences": ["Jeder Mensch ist einzigartig.", "Der Mensch braucht Wasser zum Leben.", "Viele Menschen leben in dieser Stadt."],
+    "sentence_translations": ["Every person is unique.", "A human needs water to live.", "Many people live in this city."],
+    "noun_info": { "plural": "Menschen", "gender": "masculine" }
+  },
+  {
+    "id": "de-0010", "language": "de", "base_language": "en",
+    "word": "Hand", "article": "die", "translation": "hand",
+    "category": "noun", "frequency_rank": 10, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Gib mir bitte deine Hand.", "Sie hat eine kleine Hand.", "Er hält das Buch in der Hand."],
+    "sentence_translations": ["Please give me your hand.", "She has a small hand.", "He is holding the book in his hand."],
+    "noun_info": { "plural": "Hände", "gender": "feminine" }
+  },
+  {
+    "id": "de-0011", "language": "de", "base_language": "en",
+    "word": "Wasser", "article": "das", "translation": "water",
+    "category": "noun", "frequency_rank": 11, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich trinke gern Wasser.", "Das Wasser ist kalt.", "Wir brauchen sauberes Wasser."],
+    "sentence_translations": ["I like to drink water.", "The water is cold.", "We need clean water."],
+    "noun_info": { "plural": "Wasser", "gender": "neuter" }
+  },
+  {
+    "id": "de-0012", "language": "de", "base_language": "en",
+    "word": "Stadt", "article": "die", "translation": "city",
+    "category": "noun", "frequency_rank": 12, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Berlin ist eine große Stadt.", "Ich wohne in einer kleinen Stadt.", "Die Stadt hat viele Parks."],
+    "sentence_translations": ["Berlin is a big city.", "I live in a small city.", "The city has many parks."],
+    "noun_info": { "plural": "Städte", "gender": "feminine" }
+  },
+  {
+    "id": "de-0013", "language": "de", "base_language": "en",
+    "word": "sein", "article": null, "translation": "to be",
+    "category": "verb", "frequency_rank": 13, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich bin müde.", "Sie ist meine Schwester.", "Wir sind gute Freunde."],
+    "sentence_translations": ["I am tired.", "She is my sister.", "We are good friends."],
+    "verb_info": {
+      "perfect_form": "ist gewesen", "auxiliary": "sein", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "bin", "du": "bist", "er_sie_es": "ist", "wir": "sind", "ihr": "seid", "sie_Sie": "sind" }
+    }
+  },
+  {
+    "id": "de-0014", "language": "de", "base_language": "en",
+    "word": "haben", "article": null, "translation": "to have",
+    "category": "verb", "frequency_rank": 14, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich habe einen Hund.", "Hast du Zeit?", "Wir haben viele Bücher."],
+    "sentence_translations": ["I have a dog.", "Do you have time?", "We have many books."],
+    "verb_info": {
+      "perfect_form": "hat gehabt", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "habe", "du": "hast", "er_sie_es": "hat", "wir": "haben", "ihr": "habt", "sie_Sie": "haben" }
+    }
+  },
+  {
+    "id": "de-0015", "language": "de", "base_language": "en",
+    "word": "werden", "article": null, "translation": "to become",
+    "category": "verb", "frequency_rank": 15, "cefr_level": "A2", "reviewed": false,
+    "sentences": ["Ich werde Arzt.", "Es wird kalt.", "Sie wird bald 20 Jahre alt."],
+    "sentence_translations": ["I am becoming a doctor.", "It is getting cold.", "She will soon turn 20."],
+    "verb_info": {
+      "perfect_form": "ist geworden", "auxiliary": "sein", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "werde", "du": "wirst", "er_sie_es": "wird", "wir": "werden", "ihr": "werdet", "sie_Sie": "werden" }
+    }
+  },
+  {
+    "id": "de-0016", "language": "de", "base_language": "en",
+    "word": "können", "article": null, "translation": "to be able to, can",
+    "category": "verb", "frequency_rank": 16, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich kann Deutsch sprechen.", "Kannst du mir helfen?", "Wir können morgen kommen."],
+    "sentence_translations": ["I can speak German.", "Can you help me?", "We can come tomorrow."],
+    "verb_info": {
+      "perfect_form": "hat gekonnt", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "kann", "du": "kannst", "er_sie_es": "kann", "wir": "können", "ihr": "könnt", "sie_Sie": "können" }
+    }
+  },
+  {
+    "id": "de-0017", "language": "de", "base_language": "en",
+    "word": "machen", "article": null, "translation": "to make, to do",
+    "category": "verb", "frequency_rank": 17, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Was machst du heute?", "Ich mache das Essen.", "Wir machen einen Fehler."],
+    "sentence_translations": ["What are you doing today?", "I am making the food.", "We are making a mistake."],
+    "verb_info": {
+      "perfect_form": "hat gemacht", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "mache", "du": "machst", "er_sie_es": "macht", "wir": "machen", "ihr": "macht", "sie_Sie": "machen" }
+    }
+  },
+  {
+    "id": "de-0018", "language": "de", "base_language": "en",
+    "word": "gehen", "article": null, "translation": "to go",
+    "category": "verb", "frequency_rank": 18, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich gehe zur Schule.", "Wir gehen ins Kino.", "Sie geht jeden Tag joggen."],
+    "sentence_translations": ["I am going to school.", "We are going to the cinema.", "She goes jogging every day."],
+    "verb_info": {
+      "perfect_form": "ist gegangen", "auxiliary": "sein", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "gehe", "du": "gehst", "er_sie_es": "geht", "wir": "gehen", "ihr": "geht", "sie_Sie": "gehen" }
+    }
+  },
+  {
+    "id": "de-0019", "language": "de", "base_language": "en",
+    "word": "kommen", "article": null, "translation": "to come",
+    "category": "verb", "frequency_rank": 19, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich komme aus Indien.", "Kommst du mit?", "Der Zug kommt pünktlich."],
+    "sentence_translations": ["I come from India.", "Are you coming along?", "The train arrives on time."],
+    "verb_info": {
+      "perfect_form": "ist gekommen", "auxiliary": "sein", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "komme", "du": "kommst", "er_sie_es": "kommt", "wir": "kommen", "ihr": "kommt", "sie_Sie": "kommen" }
+    }
+  },
+  {
+    "id": "de-0020", "language": "de", "base_language": "en",
+    "word": "sagen", "article": null, "translation": "to say",
+    "category": "verb", "frequency_rank": 20, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Was sagst du?", "Ich sage die Wahrheit.", "Er hat nichts gesagt."],
+    "sentence_translations": ["What are you saying?", "I am telling the truth.", "He said nothing."],
+    "verb_info": {
+      "perfect_form": "hat gesagt", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "sage", "du": "sagst", "er_sie_es": "sagt", "wir": "sagen", "ihr": "sagt", "sie_Sie": "sagen" }
+    }
+  },
+  {
+    "id": "de-0021", "language": "de", "base_language": "en",
+    "word": "wissen", "article": null, "translation": "to know (a fact)",
+    "category": "verb", "frequency_rank": 21, "cefr_level": "A2", "reviewed": false,
+    "sentences": ["Ich weiß es nicht.", "Weißt du seine Adresse?", "Wir wissen die Antwort."],
+    "sentence_translations": ["I don't know.", "Do you know his address?", "We know the answer."],
+    "verb_info": {
+      "perfect_form": "hat gewusst", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "weiß", "du": "weißt", "er_sie_es": "weiß", "wir": "wissen", "ihr": "wisst", "sie_Sie": "wissen" }
+    }
+  },
+  {
+    "id": "de-0022", "language": "de", "base_language": "en",
+    "word": "sehen", "article": null, "translation": "to see",
+    "category": "verb", "frequency_rank": 22, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich sehe einen Vogel.", "Siehst du das Haus dort?", "Wir sehen uns morgen."],
+    "sentence_translations": ["I see a bird.", "Do you see the house over there?", "We'll see each other tomorrow."],
+    "verb_info": {
+      "perfect_form": "hat gesehen", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "sehe", "du": "siehst", "er_sie_es": "sieht", "wir": "sehen", "ihr": "seht", "sie_Sie": "sehen" }
+    }
+  },
+  {
+    "id": "de-0023", "language": "de", "base_language": "en",
+    "word": "groß", "article": null, "translation": "big, tall",
+    "category": "adjective", "frequency_rank": 23, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Das Haus ist sehr groß.", "Er ist größer als ich.", "Das ist der größte Baum im Park."],
+    "sentence_translations": ["The house is very big.", "He is taller than me.", "That is the biggest tree in the park."],
+    "adjective_info": { "comparative": "größer", "superlative": "am größten" }
+  },
+  {
+    "id": "de-0024", "language": "de", "base_language": "en",
+    "word": "klein", "article": null, "translation": "small",
+    "category": "adjective", "frequency_rank": 24, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Die Wohnung ist klein.", "Mein Bruder ist kleiner als ich.", "Das ist die kleinste Katze im Haus."],
+    "sentence_translations": ["The apartment is small.", "My brother is smaller than me.", "That is the smallest cat in the house."],
+    "adjective_info": { "comparative": "kleiner", "superlative": "am kleinsten" }
+  },
+  {
+    "id": "de-0025", "language": "de", "base_language": "en",
+    "word": "gut", "article": null, "translation": "good",
+    "category": "adjective", "frequency_rank": 25, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Das Essen ist gut.", "Sie spricht besser Deutsch als ich.", "Das ist das beste Restaurant der Stadt."],
+    "sentence_translations": ["The food is good.", "She speaks German better than me.", "That is the best restaurant in the city."],
+    "adjective_info": { "comparative": "besser", "superlative": "am besten" }
+  },
+  {
+    "id": "de-0026", "language": "de", "base_language": "en",
+    "word": "neu", "article": null, "translation": "new",
+    "category": "adjective", "frequency_rank": 26, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich habe ein neues Auto.", "Dieses Modell ist neuer.", "Das ist die neueste Version."],
+    "sentence_translations": ["I have a new car.", "This model is newer.", "That is the newest version."],
+    "adjective_info": { "comparative": "neuer", "superlative": "am neuesten" }
+  },
+  {
+    "id": "de-0027", "language": "de", "base_language": "en",
+    "word": "alt", "article": null, "translation": "old",
+    "category": "adjective", "frequency_rank": 27, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Mein Opa ist sehr alt.", "Dieses Gebäude ist älter als das andere.", "Das ist die älteste Kirche der Stadt."],
+    "sentence_translations": ["My grandpa is very old.", "This building is older than the other one.", "That is the oldest church in the city."],
+    "adjective_info": { "comparative": "älter", "superlative": "am ältesten" }
+  },
+  {
+    "id": "de-0028", "language": "de", "base_language": "en",
+    "word": "mit", "article": null, "translation": "with",
+    "category": "preposition", "frequency_rank": 28, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich gehe mit meinem Freund.", "Sie schreibt mit einem Bleistift.", "Wir fahren mit dem Bus."],
+    "sentence_translations": ["I am going with my friend.", "She writes with a pencil.", "We are traveling by bus."],
+    "preposition_info": { "case": "dative" }
+  },
+  {
+    "id": "de-0029", "language": "de", "base_language": "en",
+    "word": "für", "article": null, "translation": "for",
+    "category": "preposition", "frequency_rank": 29, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Das Geschenk ist für dich.", "Ich arbeite für diese Firma.", "Das ist wichtig für uns."],
+    "sentence_translations": ["The gift is for you.", "I work for this company.", "This is important for us."],
+    "preposition_info": { "case": "accusative" }
+  },
+  {
+    "id": "de-0030", "language": "de", "base_language": "en",
+    "word": "in", "article": null, "translation": "in, into",
+    "category": "preposition", "frequency_rank": 30, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Das Buch ist in der Tasche.", "Ich gehe in die Schule.", "Wir wohnen in Berlin."],
+    "sentence_translations": ["The book is in the bag.", "I am going into the school.", "We live in Berlin."],
+    "preposition_info": { "case": "accusative_or_dative" }
+  }
+]

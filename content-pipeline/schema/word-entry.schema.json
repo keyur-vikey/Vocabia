@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WordEntry",
+  "type": "object",
+  "required": ["id", "language", "word", "translation", "category", "frequency_rank", "sentences"],
+  "properties": {
+    "id": { "type": "string", "description": "stable unique id, e.g. de-0001" },
+    "language": { "type": "string", "description": "ISO 639-1 code of the word being learned, e.g. de" },
+    "base_language": { "type": "string", "description": "ISO 639-1 code of the translation language, e.g. en" },
+    "word": { "type": "string", "description": "the word itself, without article" },
+    "article": {
+      "type": ["string", "null"],
+      "enum": ["der", "die", "das", null],
+      "description": "noun article, null if not a noun"
+    },
+    "translation": { "type": "string" },
+    "category": {
+      "type": "string",
+      "enum": ["noun", "verb", "adjective", "adverb", "preposition", "conjunction", "pronoun", "other"]
+    },
+    "frequency_rank": { "type": "integer", "description": "1 = most common word in the source frequency list" },
+    "cefr_level": { "type": ["string", "null"], "enum": ["A1", "A2", "B1", "B2", "C1", "C2", null] },
+    "sentences": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "exactly 3 example sentences using the word, in the target language"
+    },
+    "sentence_translations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "translations of the 3 example sentences, same order"
+    },
+    "reviewed": { "type": "boolean", "description": "has a human confirmed this entry's accuracy" },
+
+    "verb_info": {
+      "type": ["object", "null"],
+      "properties": {
+        "perfect_form": { "type": "string", "description": "e.g. 'ist gegangen' or 'hat gemacht'" },
+        "auxiliary": { "type": "string", "enum": ["haben", "sein"] },
+        "separable": { "type": "boolean" },
+        "separable_prefix": { "type": ["string", "null"] },
+        "present_tense": {
+          "type": "object",
+          "description": "conjugation table, keys are pronouns",
+          "properties": {
+            "ich": { "type": "string" },
+            "du": { "type": "string" },
+            "er_sie_es": { "type": "string" },
+            "wir": { "type": "string" },
+            "ihr": { "type": "string" },
+            "sie_Sie": { "type": "string" }
+          },
+          "required": ["ich", "du", "er_sie_es", "wir", "ihr", "sie_Sie"]
+        }
+      }
+    },
+
+    "noun_info": {
+      "type": ["object", "null"],
+      "properties": {
+        "plural": { "type": "string" },
+        "gender": { "type": "string", "enum": ["masculine", "feminine", "neuter"] }
+      }
+    },
+
+    "adjective_info": {
+      "type": ["object", "null"],
+      "properties": {
+        "comparative": { "type": "string" },
+        "superlative": { "type": "string" }
+      }
+    },
+
+    "preposition_info": {
+      "type": ["object", "null"],
+      "properties": {
+        "case": {
+          "type": "string",
+          "enum": ["accusative", "dative", "genitive", "accusative_or_dative"],
+          "description": "accusative_or_dative for two-way prepositions (Wechselpräpositionen)"
+        }
+      }
+    }
+  }
+}

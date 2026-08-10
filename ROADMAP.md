@@ -14,44 +14,34 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 | Platform order | Android native first (full app). iOS: empty Xcode/SwiftUI shell project only, ported later. |
 | Android stack | Kotlin + Jetpack Compose + Room (local DB) |
 | Data strategy | Offline-first. Local Room DB is source of truth; optional cloud sync when signed in. |
-| Backend (proposed, confirm) | Firebase (Auth + Firestore) — cheap to start, minimal server code, good free tier. |
+| Backend | Firebase (Auth + Firestore) |
 | Content sourcing | AI-generated (by me) now, flagged for human review later. |
-| Monetization | Freemium: free tier w/ ads (AdMob), one-time or subscription premium removes ads (Play Billing). |
-| First deck size (proposed, confirm) | ~1000 words for German MVP (top-1000 frequency list), expandable to 5000 later. |
+| Monetization | Freemium: free tier w/ ads (AdMob), one-time unlock (Play Billing) removes ads. |
+| Min Android SDK | API 29 (Android 10) |
+| First deck size | ~1000 words for German MVP, expandable to 5000 later. |
 | Card categories & colors (proposed, confirm) | Noun=blue, Verb=orange, Adjective=green, Preposition=purple, Other=gray |
 
-Open items I still need your call on are marked **(confirm)** inline below.
+All major decisions confirmed. Remaining **(confirm)** items are minor/cosmetic.
 
 ---
 
 ## Phase 0 — Foundations
-- [ ] Repo init (git) + folder structure (`/android`, `/ios-shell`, `/content-pipeline`, `/docs`)
-- [ ] Android project skeleton (Kotlin, Compose, min/target SDK decision) **(confirm min SDK, e.g. 26+)**
-- [ ] Empty iOS Xcode project shell (SwiftUI, bundle id reserved, no real screens yet)
-- [ ] Firebase project created (Auth + Firestore), google-services.json wired but unused until Phase 6
-- [ ] Define word-entry JSON schema (see Phase 1)
+- [x] Repo init (git) + folder structure (`/android`, `/ios-shell`, `/content-pipeline`, `/docs`)
+- [x] Android project skeleton (Kotlin, Compose, min SDK 29 / Android 10)
+- [x] Empty iOS Xcode project shell placeholder (real `.xcodeproj` needs Xcode on a Mac — see note in `/ios-shell`)
+- [ ] Firebase project created (Auth + Firestore) — **needs you**: create project at console.firebase.google.com, I'll wire the SDK once it exists
+- [x] Define word-entry JSON schema (see Phase 1)
 
 ## Phase 1 — Content model & data pipeline
-- [ ] Finalize JSON schema per word type:
-  - Common: `id, word, article (if noun), translation, category, cefr/frequency_rank, sentences[3]`
-  - Verb-specific: `perfect_form (Partizip II + haben/sein), present-tense conjugation table (ich/du/er.../wir/ihr/sie), separable? prefix`
-  - Preposition-specific: `case (Akkusativ/Dativ/Genitiv/two-way), example per case if two-way`
-  - Adjective-specific: `comparative, superlative`
-  - Noun-specific: `plural form, gender`
+- [x] Finalize JSON schema per word type — see [`content-pipeline/schema/word-entry.schema.json`](content-pipeline/schema/word-entry.schema.json)
 - [ ] Generate first batch: German top ~200 words (mixed categories) as a pilot dataset
 - [ ] Human review pass on pilot batch (you correct/approve)
 - [ ] Scale generation to ~1000 words once schema/quality confirmed
 - [ ] Simple validation script (schema check, duplicate check, missing-field check)
 
 ## Phase 2 — Spaced-repetition algorithm design
-- [ ] Design box/state model per word per user:
-  - `box_level` (0..N), `consecutive_correct`, `last_seen_session`, `next_eligible_session`, `status (learning/finished)`
-- [ ] Define swipe → transition rules:
-  - **Swipe left (forgot)**: reset streak to 0, `next_eligible_session = current + 1` (small delay, grows slightly with box level)
-  - **Swipe right (remembered)**: `consecutive_correct += 1`, box level up, delay before reappearing grows (e.g. 2, 5, 12 practices — tune curve); on 3rd consecutive → `status = finished`, removed from rotation permanently
-  - **Swipe down (already know)**: `status = finished` immediately
-- [ ] Define session builder: pick 10–15 cards per practice = mix of due "learning" words + a few new words, respecting `next_eligible_session`
-- [ ] Write this up as a short algorithm spec doc (`/docs/algorithm.md`) before coding it — review together
+- [x] Design box/state model, swipe transition rules, and session builder
+- [x] Write up algorithm spec doc — see [`docs/algorithm.md`](docs/algorithm.md) — **awaiting your review of 3 open questions in it**
 
 ## Phase 3 — Local persistence (Android)
 - [ ] Room schema: `WordEntity`, `UserWordProgressEntity`, `DeckMetadataEntity`

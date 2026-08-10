@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BarChart
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -31,7 +31,7 @@ import com.mithun.vocabia.repository.SwipeDirection
 import kotlinx.coroutines.launch
 
 @Composable
-fun DeckScreen() {
+fun DeckScreen(onBack: () -> Unit) {
     val context = LocalContext.current
     val repository = remember { PracticeRepository(context) }
     val scope = rememberCoroutineScope()
@@ -41,8 +41,6 @@ fun DeckScreen() {
     var currentIndex by remember { mutableIntStateOf(0) }
     var finishedCount by remember { mutableIntStateOf(0) }
     var totalCount by remember { mutableIntStateOf(0) }
-    var showStats by remember { mutableStateOf(false) }
-    var categoryStats by remember { mutableStateOf<List<PracticeRepository.CategoryStats>>(emptyList()) }
 
     suspend fun loadNewSession() {
         repository.advanceSession()
@@ -59,36 +57,25 @@ fun DeckScreen() {
         loading = false
     }
 
-    LaunchedEffect(showStats) {
-        if (showStats) {
-            categoryStats = repository.statsByCategory()
-        }
-    }
-
     Box(modifier = Modifier.fillMaxSize()) {
         if (loading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             return@Box
         }
 
-        if (showStats) {
-            StatsScreen(categoryStats = categoryStats, onBack = { showStats = false })
-            return@Box
-        }
-
         Column(modifier = Modifier.fillMaxSize()) {
             Row(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                IconButton(onClick = onBack) {
+                    Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                }
                 Text(
                     text = "Finished: $finishedCount / $totalCount",
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier.weight(1f)
                 )
-                IconButton(onClick = { showStats = true }) {
-                    Icon(Icons.Filled.BarChart, contentDescription = "Progress")
-                }
             }
 
             Box(modifier = Modifier.fillMaxSize()) {

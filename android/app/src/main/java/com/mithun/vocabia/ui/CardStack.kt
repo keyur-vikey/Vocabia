@@ -167,49 +167,40 @@ private data class SwipeBadge(
     val alignment: Alignment
 )
 
-private val FORGOT_BADGE = SwipeBadge(Icons.Filled.Close, "Forgot", Color(0xFFDC2626), Alignment.CenterStart)
-private val REMEMBERED_BADGE = SwipeBadge(Icons.Filled.Check, "Remembered", Color(0xFF16A34A), Alignment.CenterEnd)
-private val MASTERED_BADGE = SwipeBadge(Icons.Filled.Star, "Mastered", Color(0xFFCA8A04), Alignment.TopCenter)
-
-private const val BASE_ALPHA = 0.35f
-
 @Composable
 private fun SwipeIndicator(offsetX: Float, offsetY: Float) {
-    val leftProgress = (maxOf(0f, -offsetX) / SWIPE_THRESHOLD_PX).coerceIn(0f, 1f)
-    val rightProgress = (maxOf(0f, offsetX) / SWIPE_THRESHOLD_PX).coerceIn(0f, 1f)
-    val downProgress = (maxOf(0f, offsetY) / SWIPE_THRESHOLD_PX).coerceIn(0f, 1f)
+    val progress = (maxOf(abs(offsetX), abs(offsetY)) / SWIPE_THRESHOLD_PX).coerceIn(0f, 1f)
+    if (progress < 0.15f) return
 
-    Box(modifier = Modifier.fillMaxSize().padding(20.dp)) {
-        BadgeChip(FORGOT_BADGE, leftProgress, Modifier.align(FORGOT_BADGE.alignment))
-        BadgeChip(REMEMBERED_BADGE, rightProgress, Modifier.align(REMEMBERED_BADGE.alignment))
-        BadgeChip(MASTERED_BADGE, downProgress, Modifier.align(MASTERED_BADGE.alignment))
+    val badge = when {
+        offsetY > abs(offsetX) && offsetY > 0 ->
+            SwipeBadge(Icons.Filled.Star, "Mastered", Color(0xFFCA8A04), Alignment.TopCenter)
+        offsetX > 0 ->
+            SwipeBadge(Icons.Filled.Check, "Remembered", Color(0xFF16A34A), Alignment.CenterEnd)
+        else ->
+            SwipeBadge(Icons.Filled.Close, "Forgot", Color(0xFFDC2626), Alignment.CenterStart)
     }
-}
 
-@Composable
-private fun BadgeChip(badge: SwipeBadge, progress: Float, modifier: Modifier) {
-    val alpha = BASE_ALPHA + (1f - BASE_ALPHA) * progress
-    val scale = 1f + progress * 0.15f
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .graphicsLayer { scaleX = scale; scaleY = scale }
-            .background(badge.color.copy(alpha = alpha * 0.85f), RoundedCornerShape(50))
-            .padding(horizontal = 10.dp, vertical = 6.dp)
-    ) {
-        Icon(
-            imageVector = badge.icon,
-            contentDescription = null,
-            tint = Color.White.copy(alpha = alpha),
-            modifier = Modifier.size(14.dp)
-        )
-        Text(
-            text = badge.label,
-            color = Color.White.copy(alpha = alpha),
-            fontSize = 12.sp,
-            fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(start = 4.dp)
-        )
+    Box(modifier = Modifier.fillMaxSize().padding(20.dp), contentAlignment = badge.alignment) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .background(badge.color.copy(alpha = progress * 0.85f), RoundedCornerShape(50))
+                .padding(horizontal = 10.dp, vertical = 6.dp)
+        ) {
+            Icon(
+                imageVector = badge.icon,
+                contentDescription = null,
+                tint = Color.White.copy(alpha = progress),
+                modifier = Modifier.size(14.dp)
+            )
+            Text(
+                text = badge.label,
+                color = Color.White.copy(alpha = progress),
+                fontSize = 12.sp,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(start = 4.dp)
+            )
+        }
     }
 }

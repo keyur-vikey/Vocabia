@@ -44,21 +44,24 @@ All major decisions confirmed. Remaining **(confirm)** items are minor/cosmetic.
 - [x] Write up algorithm spec doc — see [`docs/algorithm.md`](docs/algorithm.md) — **awaiting your review of 3 open questions in it**
 
 ## Phase 3 — Local persistence (Android)
-- [ ] Room schema: `WordEntity`, `UserWordProgressEntity`, `DeckMetadataEntity`
-- [ ] Seed DB from bundled JSON content on first launch
-- [ ] Repository layer exposing: next-session query, mark-swipe-result, stats query
+- [x] Room schema: `WordEntity`, `UserWordProgressEntity`, `SessionCounterEntity`
+- [x] Seed DB from bundled JSON content on first launch (`SeedLoader`)
+- [x] Repository layer (`PracticeRepository`): session builder + swipe handling per algorithm spec
 
 ## Phase 4 — Card UI & visuals
-- [ ] Deck-on-floor visual: stacked cards with peeking corners, subtle shadow/offset per depth
-- [ ] Category color system + iconography (noun/verb/adjective/preposition/other)
-- [ ] Tap-to-reveal state machine on a card: word → tap → meaning → tap → article (if any) → tap → sentence 1 → tap → sentence 2 → tap → sentence 3 → tap → rest of grammar info (conjugation table / case, etc.)
-- [ ] Swipe gesture handling with visual feedback (left = subtle red tint + icon, right = green tint + icon, down = gold/star "mastered" animation)
-- [ ] Card component per category (verb card shows conjugation table area, preposition card shows case badge, etc.)
+- [x] Deck-on-floor visual: stacked peeking cards behind the active one (`CardStack.kt`)
+- [x] Category color system (noun/verb/adjective/preposition/other) — `CategoryColors.kt`
+- [x] Tap-to-reveal state machine: word → meaning → article (if any) → sentence 1 → 2 → 3 → grammar info (`WordCardContent.kt`)
+- [x] Swipe gesture handling with drag-tint visual feedback (green=right, red=left, gold=down)
+- [ ] Polish pass: real category icons, nicer typography/spacing, swipe icons (currently color-tint only) — deferred until first on-device test
+- [x] Card component renders category-specific grammar (verb conjugation table, noun plural/gender, adjective comp/superlative, preposition case)
 
 ## Phase 5 — Practice flow
-- [ ] Deck/session screen wiring algorithm output → card stack
-- [ ] Progress/stats screen (learning vs finished counts, streaks)
-- [ ] Language + deck selection screen (German→English MVP; structure ready for more languages later)
+- [x] Deck/session screen (`DeckScreen.kt`) wiring repository → card stack, session-complete → auto new session
+- [ ] Progress/stats screen (currently just a finished/total counter header — dedicated stats screen deferred)
+- [ ] Language + deck selection screen (not needed yet — single German pilot deck hardcoded)
+
+**Status: first buildable MVP exists, not yet run on a real device.** Next: open `android/` in Android Studio, let it sync (auto-generates the Gradle wrapper), connect the tablet with USB debugging enabled, and run.
 
 ## Phase 6 — Cloud sync (optional sign-in)
 - [ ] Firebase Auth (anonymous by default, optional Google sign-in to back up)

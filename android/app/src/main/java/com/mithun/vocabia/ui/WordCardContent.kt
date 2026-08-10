@@ -11,9 +11,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mithun.vocabia.data.WordEntity
@@ -44,7 +46,8 @@ fun WordCardContent(word: WordEntity, revealCount: Int) {
         modifier = Modifier
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
-            .padding(20.dp)
+            .padding(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // header section: category chip + word
         CategoryChip(word.category, accent)
@@ -52,6 +55,7 @@ fun WordCardContent(word: WordEntity, revealCount: Int) {
             text = word.word,
             fontSize = 34.sp,
             fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
             modifier = Modifier.padding(top = 10.dp)
         )
         if ("article" in revealed && word.article != null) {
@@ -60,13 +64,14 @@ fun WordCardContent(word: WordEntity, revealCount: Int) {
                 fontSize = 15.sp,
                 color = accent,
                 fontWeight = FontWeight.SemiBold,
+                textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = 2.dp)
             )
         }
 
         if ("meaning" in revealed) {
             Section(title = "Meaning", accent = accent) {
-                Text(text = word.translation, fontSize = 18.sp)
+                Text(text = word.translation, fontSize = 18.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
             }
         }
 

@@ -48,8 +48,8 @@ fun CardStack(
                 val word = cards[peekIndex].word
                 Card(
                     modifier = Modifier
-                        .fillMaxWidth(0.92f)
-                        .fillMaxHeight(0.88f)
+                        .fillMaxWidth(0.78f)
+                        .fillMaxHeight(0.72f)
                         .graphicsLayer {
                             translationX = depth * 10f
                             translationY = depth * 14f
@@ -87,10 +87,12 @@ private fun SwipeableTopCard(
         else -> Color.Transparent
     }
 
+    val accent = categoryColor(word.category)
+
     Card(
         modifier = Modifier
-            .fillMaxWidth(0.92f)
-            .fillMaxHeight(0.88f)
+            .fillMaxWidth(0.78f)
+            .fillMaxHeight(0.72f)
             .graphicsLayer {
                 translationX = offsetX.value
                 translationY = offsetY.value
@@ -133,11 +135,12 @@ private fun SwipeableTopCard(
                     }
                 }
             },
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = accent.copy(alpha = 0.06f)),
         shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+        border = androidx.compose.foundation.BorderStroke(1.dp, accent.copy(alpha = 0.25f))
     ) {
-        Box(modifier = Modifier.fillMaxSize().background(dragTint)) {
+        Box(modifier = Modifier.fillMaxSize().background(dragTint), contentAlignment = Alignment.Center) {
             WordCardContent(word = word, revealCount = revealCount)
         }
     }

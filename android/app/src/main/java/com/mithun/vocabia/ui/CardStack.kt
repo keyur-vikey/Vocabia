@@ -6,13 +6,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -49,7 +48,8 @@ fun CardStack(
                 val word = cards[peekIndex].word
                 Card(
                     modifier = Modifier
-                        .size(width = 300.dp, height = 420.dp)
+                        .fillMaxWidth(0.92f)
+                        .fillMaxHeight(0.88f)
                         .graphicsLayer {
                             translationX = depth * 10f
                             translationY = depth * 14f
@@ -89,7 +89,8 @@ private fun SwipeableTopCard(
 
     Card(
         modifier = Modifier
-            .size(width = 300.dp, height = 420.dp)
+            .fillMaxWidth(0.92f)
+            .fillMaxHeight(0.88f)
             .graphicsLayer {
                 translationX = offsetX.value
                 translationY = offsetY.value
@@ -137,11 +138,6 @@ private fun SwipeableTopCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
         Box(modifier = Modifier.fillMaxSize().background(dragTint)) {
-            Box(
-                modifier = Modifier.align(Alignment.TopEnd).padding(12.dp)
-            ) {
-                Text(text = categoryLabel(word.category), color = categoryColor(word.category))
-            }
             WordCardContent(word = word, revealCount = revealCount)
         }
     }

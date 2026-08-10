@@ -34,9 +34,9 @@ All major decisions confirmed. Remaining **(confirm)** items are minor/cosmetic.
 
 ## Phase 1 — Content model & data pipeline
 - [x] Finalize JSON schema per word type — see [`content-pipeline/schema/word-entry.schema.json`](content-pipeline/schema/word-entry.schema.json)
-- [ ] Generate first batch: German top ~200 words (mixed categories) as a pilot dataset
-- [ ] Human review pass on pilot batch (you correct/approve)
-- [ ] Scale generation to ~1000 words once schema/quality confirmed
+- [~] Pilot dataset: 60/200 words generated (`content-pipeline/de/pilot-batch-1.json`, `pilot-batch-2.json`, bundled into `android/app/src/main/assets/vocab/de_en_pilot.json`) — **paused, resume manually on request**
+- [ ] **[MANUAL TRIGGER]** Continue word generation to ~200 pilot words, then scale to ~1000 — only when you explicitly prompt for it, in batches of ~30 words at a time
+- [ ] Human review pass on generated batches (you correct/approve)
 - [ ] Simple validation script (schema check, duplicate check, missing-field check)
 
 ## Phase 2 — Spaced-repetition algorithm design

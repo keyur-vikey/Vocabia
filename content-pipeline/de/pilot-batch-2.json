@@ -1,0 +1,270 @@
+[
+  {
+    "id": "de-0031", "language": "de", "base_language": "en",
+    "word": "Frage", "article": "die", "translation": "question",
+    "category": "noun", "frequency_rank": 31, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich habe eine Frage.", "Das ist eine gute Frage.", "Er beantwortet die Frage nicht."],
+    "sentence_translations": ["I have a question.", "That is a good question.", "He doesn't answer the question."],
+    "noun_info": { "plural": "Fragen", "gender": "feminine" }
+  },
+  {
+    "id": "de-0032", "language": "de", "base_language": "en",
+    "word": "Arbeit", "article": "die", "translation": "work",
+    "category": "noun", "frequency_rank": 32, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Die Arbeit macht mir Spaß.", "Ich gehe zur Arbeit.", "Sie hat viel Arbeit heute."],
+    "sentence_translations": ["I enjoy the work.", "I am going to work.", "She has a lot of work today."],
+    "noun_info": { "plural": "Arbeiten", "gender": "feminine" }
+  },
+  {
+    "id": "de-0033", "language": "de", "base_language": "en",
+    "word": "Auto", "article": "das", "translation": "car",
+    "category": "noun", "frequency_rank": 33, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Das Auto ist neu.", "Wir fahren mit dem Auto.", "Sein Auto ist rot."],
+    "sentence_translations": ["The car is new.", "We are driving by car.", "His car is red."],
+    "noun_info": { "plural": "Autos", "gender": "neuter" }
+  },
+  {
+    "id": "de-0034", "language": "de", "base_language": "en",
+    "word": "Schule", "article": "die", "translation": "school",
+    "category": "noun", "frequency_rank": 34, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Die Schule beginnt um acht Uhr.", "Mein Sohn geht in die Schule.", "Die Schule ist nicht weit von hier."],
+    "sentence_translations": ["School starts at eight o'clock.", "My son goes to school.", "The school is not far from here."],
+    "noun_info": { "plural": "Schulen", "gender": "feminine" }
+  },
+  {
+    "id": "de-0035", "language": "de", "base_language": "en",
+    "word": "Buch", "article": "das", "translation": "book",
+    "category": "noun", "frequency_rank": 35, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich lese ein spannendes Buch.", "Das Buch liegt auf dem Tisch.", "Sie schreibt ein neues Buch."],
+    "sentence_translations": ["I am reading an exciting book.", "The book is on the table.", "She is writing a new book."],
+    "noun_info": { "plural": "Bücher", "gender": "neuter" }
+  },
+  {
+    "id": "de-0036", "language": "de", "base_language": "en",
+    "word": "Freund", "article": "der", "translation": "friend",
+    "category": "noun", "frequency_rank": 36, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Er ist mein bester Freund.", "Ich treffe meinen Freund heute.", "Sie hat viele Freunde."],
+    "sentence_translations": ["He is my best friend.", "I am meeting my friend today.", "She has many friends."],
+    "noun_info": { "plural": "Freunde", "gender": "masculine" }
+  },
+  {
+    "id": "de-0037", "language": "de", "base_language": "en",
+    "word": "Familie", "article": "die", "translation": "family",
+    "category": "noun", "frequency_rank": 37, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Meine Familie ist groß.", "Ich besuche meine Familie am Wochenende.", "Die Familie wohnt in München."],
+    "sentence_translations": ["My family is big.", "I visit my family on the weekend.", "The family lives in Munich."],
+    "noun_info": { "plural": "Familien", "gender": "feminine" }
+  },
+  {
+    "id": "de-0038", "language": "de", "base_language": "en",
+    "word": "Geld", "article": "das", "translation": "money",
+    "category": "noun", "frequency_rank": 38, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich brauche mehr Geld.", "Er hat kein Geld dabei.", "Wir sparen Geld für den Urlaub."],
+    "sentence_translations": ["I need more money.", "He doesn't have any money with him.", "We are saving money for the vacation."],
+    "noun_info": { "plural": "Gelder", "gender": "neuter" }
+  },
+  {
+    "id": "de-0039", "language": "de", "base_language": "en",
+    "word": "Stunde", "article": "die", "translation": "hour",
+    "category": "noun", "frequency_rank": 39, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Die Reise dauert eine Stunde.", "Ich warte seit einer Stunde.", "Wir haben noch eine Stunde Zeit."],
+    "sentence_translations": ["The trip takes one hour.", "I have been waiting for an hour.", "We still have one hour left."],
+    "noun_info": { "plural": "Stunden", "gender": "feminine" }
+  },
+  {
+    "id": "de-0040", "language": "de", "base_language": "en",
+    "word": "Woche", "article": "die", "translation": "week",
+    "category": "noun", "frequency_rank": 40, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Diese Woche bin ich krank.", "Ich sehe ihn einmal pro Woche.", "Die Woche hat sieben Tage."],
+    "sentence_translations": ["This week I am sick.", "I see him once a week.", "The week has seven days."],
+    "noun_info": { "plural": "Wochen", "gender": "feminine" }
+  },
+  {
+    "id": "de-0041", "language": "de", "base_language": "en",
+    "word": "essen", "article": null, "translation": "to eat",
+    "category": "verb", "frequency_rank": 41, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich esse gern Pizza.", "Isst du Fleisch?", "Wir essen um sieben Uhr."],
+    "sentence_translations": ["I like to eat pizza.", "Do you eat meat?", "We eat at seven o'clock."],
+    "verb_info": {
+      "perfect_form": "hat gegessen", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "esse", "du": "isst", "er_sie_es": "isst", "wir": "essen", "ihr": "esst", "sie_Sie": "essen" }
+    }
+  },
+  {
+    "id": "de-0042", "language": "de", "base_language": "en",
+    "word": "trinken", "article": null, "translation": "to drink",
+    "category": "verb", "frequency_rank": 42, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich trinke Wasser.", "Was trinkst du gern?", "Sie trinkt jeden Morgen Kaffee."],
+    "sentence_translations": ["I drink water.", "What do you like to drink?", "She drinks coffee every morning."],
+    "verb_info": {
+      "perfect_form": "hat getrunken", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "trinke", "du": "trinkst", "er_sie_es": "trinkt", "wir": "trinken", "ihr": "trinkt", "sie_Sie": "trinken" }
+    }
+  },
+  {
+    "id": "de-0043", "language": "de", "base_language": "en",
+    "word": "sprechen", "article": null, "translation": "to speak",
+    "category": "verb", "frequency_rank": 43, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich spreche Deutsch.", "Sprichst du Englisch?", "Wir sprechen über das Wetter."],
+    "sentence_translations": ["I speak German.", "Do you speak English?", "We are talking about the weather."],
+    "verb_info": {
+      "perfect_form": "hat gesprochen", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "spreche", "du": "sprichst", "er_sie_es": "spricht", "wir": "sprechen", "ihr": "sprecht", "sie_Sie": "sprechen" }
+    }
+  },
+  {
+    "id": "de-0044", "language": "de", "base_language": "en",
+    "word": "arbeiten", "article": null, "translation": "to work",
+    "category": "verb", "frequency_rank": 44, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich arbeite bei einer Bank.", "Er arbeitet viel.", "Wir arbeiten heute nicht."],
+    "sentence_translations": ["I work at a bank.", "He works a lot.", "We are not working today."],
+    "verb_info": {
+      "perfect_form": "hat gearbeitet", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "arbeite", "du": "arbeitest", "er_sie_es": "arbeitet", "wir": "arbeiten", "ihr": "arbeitet", "sie_Sie": "arbeiten" }
+    }
+  },
+  {
+    "id": "de-0045", "language": "de", "base_language": "en",
+    "word": "lernen", "article": null, "translation": "to learn",
+    "category": "verb", "frequency_rank": 45, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich lerne Deutsch.", "Sie lernt schnell.", "Wir lernen jeden Tag neue Wörter."],
+    "sentence_translations": ["I am learning German.", "She learns quickly.", "We learn new words every day."],
+    "verb_info": {
+      "perfect_form": "hat gelernt", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "lerne", "du": "lernst", "er_sie_es": "lernt", "wir": "lernen", "ihr": "lernt", "sie_Sie": "lernen" }
+    }
+  },
+  {
+    "id": "de-0046", "language": "de", "base_language": "en",
+    "word": "spielen", "article": null, "translation": "to play",
+    "category": "verb", "frequency_rank": 46, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Die Kinder spielen im Park.", "Ich spiele gern Fußball.", "Sie spielt Klavier."],
+    "sentence_translations": ["The children are playing in the park.", "I like to play soccer.", "She plays the piano."],
+    "verb_info": {
+      "perfect_form": "hat gespielt", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "spiele", "du": "spielst", "er_sie_es": "spielt", "wir": "spielen", "ihr": "spielt", "sie_Sie": "spielen" }
+    }
+  },
+  {
+    "id": "de-0047", "language": "de", "base_language": "en",
+    "word": "kaufen", "article": null, "translation": "to buy",
+    "category": "verb", "frequency_rank": 47, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich kaufe Brot.", "Was kaufst du im Supermarkt?", "Wir kaufen ein neues Auto."],
+    "sentence_translations": ["I am buying bread.", "What are you buying at the supermarket?", "We are buying a new car."],
+    "verb_info": {
+      "perfect_form": "hat gekauft", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "kaufe", "du": "kaufst", "er_sie_es": "kauft", "wir": "kaufen", "ihr": "kauft", "sie_Sie": "kaufen" }
+    }
+  },
+  {
+    "id": "de-0048", "language": "de", "base_language": "en",
+    "word": "geben", "article": null, "translation": "to give",
+    "category": "verb", "frequency_rank": 48, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich gebe dir das Buch.", "Gibst du mir bitte das Salz?", "Er gibt ihr einen Kuss."],
+    "sentence_translations": ["I am giving you the book.", "Could you please pass me the salt?", "He gives her a kiss."],
+    "verb_info": {
+      "perfect_form": "hat gegeben", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "gebe", "du": "gibst", "er_sie_es": "gibt", "wir": "geben", "ihr": "gebt", "sie_Sie": "geben" }
+    }
+  },
+  {
+    "id": "de-0049", "language": "de", "base_language": "en",
+    "word": "finden", "article": null, "translation": "to find",
+    "category": "verb", "frequency_rank": 49, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich finde meinen Schlüssel nicht.", "Wo finde ich den Bahnhof?", "Wir finden die Lösung."],
+    "sentence_translations": ["I can't find my key.", "Where do I find the train station?", "We are finding the solution."],
+    "verb_info": {
+      "perfect_form": "hat gefunden", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "finde", "du": "findest", "er_sie_es": "findet", "wir": "finden", "ihr": "findet", "sie_Sie": "finden" }
+    }
+  },
+  {
+    "id": "de-0050", "language": "de", "base_language": "en",
+    "word": "denken", "article": null, "translation": "to think",
+    "category": "verb", "frequency_rank": 50, "cefr_level": "A2", "reviewed": false,
+    "sentences": ["Ich denke oft an dich.", "Was denkst du darüber?", "Wir denken über die Zukunft nach."],
+    "sentence_translations": ["I often think of you.", "What do you think about that?", "We are thinking about the future."],
+    "verb_info": {
+      "perfect_form": "hat gedacht", "auxiliary": "haben", "separable": false, "separable_prefix": null,
+      "present_tense": { "ich": "denke", "du": "denkst", "er_sie_es": "denkt", "wir": "denken", "ihr": "denkt", "sie_Sie": "denken" }
+    }
+  },
+  {
+    "id": "de-0051", "language": "de", "base_language": "en",
+    "word": "schön", "article": null, "translation": "beautiful, nice",
+    "category": "adjective", "frequency_rank": 51, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Das Wetter ist schön.", "Sie hat ein schöneres Kleid als ich.", "Das ist die schönste Stadt, die ich kenne."],
+    "sentence_translations": ["The weather is nice.", "She has a nicer dress than me.", "That is the most beautiful city I know."],
+    "adjective_info": { "comparative": "schöner", "superlative": "am schönsten" }
+  },
+  {
+    "id": "de-0052", "language": "de", "base_language": "en",
+    "word": "wichtig", "article": null, "translation": "important",
+    "category": "adjective", "frequency_rank": 52, "cefr_level": "A2", "reviewed": false,
+    "sentences": ["Das ist sehr wichtig.", "Diese Frage ist wichtiger als die andere.", "Das ist der wichtigste Termin dieser Woche."],
+    "sentence_translations": ["That is very important.", "This question is more important than the other one.", "That is the most important appointment this week."],
+    "adjective_info": { "comparative": "wichtiger", "superlative": "am wichtigsten" }
+  },
+  {
+    "id": "de-0053", "language": "de", "base_language": "en",
+    "word": "schnell", "article": null, "translation": "fast, quick",
+    "category": "adjective", "frequency_rank": 53, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Das Auto ist sehr schnell.", "Er läuft schneller als ich.", "Das ist der schnellste Weg zum Bahnhof."],
+    "sentence_translations": ["The car is very fast.", "He runs faster than me.", "That is the fastest way to the train station."],
+    "adjective_info": { "comparative": "schneller", "superlative": "am schnellsten" }
+  },
+  {
+    "id": "de-0054", "language": "de", "base_language": "en",
+    "word": "lang", "article": null, "translation": "long",
+    "category": "adjective", "frequency_rank": 54, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Der Film ist sehr lang.", "Dieser Weg ist länger als der andere.", "Das ist der längste Fluss in Europa."],
+    "sentence_translations": ["The movie is very long.", "This path is longer than the other one.", "That is the longest river in Europe."],
+    "adjective_info": { "comparative": "länger", "superlative": "am längsten" }
+  },
+  {
+    "id": "de-0055", "language": "de", "base_language": "en",
+    "word": "jung", "article": null, "translation": "young",
+    "category": "adjective", "frequency_rank": 55, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Sie ist noch sehr jung.", "Mein Bruder ist jünger als ich.", "Er ist der jüngste in der Familie."],
+    "sentence_translations": ["She is still very young.", "My brother is younger than me.", "He is the youngest in the family."],
+    "adjective_info": { "comparative": "jünger", "superlative": "am jüngsten" }
+  },
+  {
+    "id": "de-0056", "language": "de", "base_language": "en",
+    "word": "auf", "article": null, "translation": "on, onto, upon",
+    "category": "preposition", "frequency_rank": 56, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Das Buch liegt auf dem Tisch.", "Wir warten auf den Bus.", "Sie legt die Tasche auf den Stuhl."],
+    "sentence_translations": ["The book is on the table.", "We are waiting for the bus.", "She puts the bag on the chair."],
+    "preposition_info": { "case": "accusative_or_dative" }
+  },
+  {
+    "id": "de-0057", "language": "de", "base_language": "en",
+    "word": "von", "article": null, "translation": "from, of",
+    "category": "preposition", "frequency_rank": 57, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich komme von der Arbeit.", "Das ist ein Geschenk von meiner Mutter.", "Er erzählt von seiner Reise."],
+    "sentence_translations": ["I am coming from work.", "This is a gift from my mother.", "He is talking about his trip."],
+    "preposition_info": { "case": "dative" }
+  },
+  {
+    "id": "de-0058", "language": "de", "base_language": "en",
+    "word": "durch", "article": null, "translation": "through",
+    "category": "preposition", "frequency_rank": 58, "cefr_level": "A2", "reviewed": false,
+    "sentences": ["Wir gehen durch den Park.", "Das Licht kommt durch das Fenster.", "Er reist durch ganz Europa."],
+    "sentence_translations": ["We are walking through the park.", "The light comes through the window.", "He is traveling through all of Europe."],
+    "preposition_info": { "case": "accusative" }
+  },
+  {
+    "id": "de-0059", "language": "de", "base_language": "en",
+    "word": "immer", "article": null, "translation": "always",
+    "category": "adverb", "frequency_rank": 59, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Ich trinke immer Kaffee am Morgen.", "Sie ist immer pünktlich.", "Das war schon immer so."],
+    "sentence_translations": ["I always drink coffee in the morning.", "She is always punctual.", "It has always been that way."]
+  },
+  {
+    "id": "de-0060", "language": "de", "base_language": "en",
+    "word": "heute", "article": null, "translation": "today",
+    "category": "adverb", "frequency_rank": 60, "cefr_level": "A1", "reviewed": false,
+    "sentences": ["Heute ist Montag.", "Was machst du heute?", "Ich habe heute keine Zeit."],
+    "sentence_translations": ["Today is Monday.", "What are you doing today?", "I have no time today."]
+  }
+]

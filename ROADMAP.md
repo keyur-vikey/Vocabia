@@ -53,15 +53,15 @@ All major decisions confirmed. Remaining **(confirm)** items are minor/cosmetic.
 - [x] Category color system (noun/verb/adjective/preposition/other) — `CategoryColors.kt`
 - [x] Tap-to-reveal state machine: word → meaning → article (if any) → sentence 1 → 2 → 3 → grammar info (`WordCardContent.kt`)
 - [x] Swipe gesture handling with drag-tint visual feedback (green=right, red=left, gold=down)
-- [ ] Polish pass: real category icons, nicer typography/spacing, swipe icons (currently color-tint only) — deferred until first on-device test
+- [x] Polish pass: category icons (chip + stats), swipe direction icons (check/close/star) fading in with drag progress, improved typography/spacing
 - [x] Card component renders category-specific grammar (verb conjugation table, noun plural/gender, adjective comp/superlative, preposition case)
 
 ## Phase 5 — Practice flow
 - [x] Deck/session screen (`DeckScreen.kt`) wiring repository → card stack, session-complete → auto new session
-- [ ] Progress/stats screen (currently just a finished/total counter header — dedicated stats screen deferred)
+- [x] Progress/stats screen (`StatsScreen.kt`): overall progress bar + per-category breakdown (finished/learning/new), reachable via a chart icon on the deck screen
 - [ ] Language + deck selection screen (not needed yet — single German pilot deck hardcoded)
 
-**Status: first buildable MVP exists, not yet run on a real device.** Next: open `android/` in Android Studio, let it sync (auto-generates the Gradle wrapper), connect the tablet with USB debugging enabled, and run.
+**Status: MVP runs on real devices.** Built and verified crash-free on both a T10Plus tablet and a Pixel 4a via adb (build tooling: downloaded Gradle 8.7 + used Android Studio's bundled JDK 21, since neither was on PATH). Phases 0–5 are functionally complete for the pilot deck; remaining work is mostly Phase 1 (more words) and Phase 6+ (sync, monetization, release).
 
 ## Phase 6 — Cloud sync (optional sign-in)
 - [ ] Firebase Auth (anonymous by default, optional Google sign-in to back up)

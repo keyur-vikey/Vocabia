@@ -6,9 +6,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -18,6 +20,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -31,7 +34,9 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mithun.vocabia.data.WordEntity
 import com.mithun.vocabia.repository.PracticeCard
 import com.mithun.vocabia.repository.SwipeDirection
@@ -150,23 +155,47 @@ private fun SwipeableTopCard(
     }
 }
 
+private data class SwipeBadge(
+    val icon: androidx.compose.ui.graphics.vector.ImageVector,
+    val label: String,
+    val color: Color,
+    val alignment: Alignment
+)
+
 @Composable
 private fun SwipeIndicator(offsetX: Float, offsetY: Float) {
     val progress = (maxOf(abs(offsetX), abs(offsetY)) / SWIPE_THRESHOLD_PX).coerceIn(0f, 1f)
-    if (progress < 0.05f) return
+    if (progress < 0.15f) return
 
-    val (icon, tint) = when {
-        offsetY > abs(offsetX) && offsetY > 0 -> Icons.Filled.Star to Color(0xFFFACC15)
-        offsetX > 0 -> Icons.Filled.Check to Color(0xFF22C55E)
-        else -> Icons.Filled.Close to Color(0xFFEF4444)
+    val badge = when {
+        offsetY > abs(offsetX) && offsetY > 0 ->
+            SwipeBadge(Icons.Filled.Star, "Mastered", Color(0xFFCA8A04), Alignment.TopCenter)
+        offsetX > 0 ->
+            SwipeBadge(Icons.Filled.Check, "Remembered", Color(0xFF16A34A), Alignment.TopEnd)
+        else ->
+            SwipeBadge(Icons.Filled.Close, "Forgot", Color(0xFFDC2626), Alignment.TopStart)
     }
 
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
-            tint = tint.copy(alpha = progress),
-            modifier = Modifier.size(96.dp)
-        )
+    Box(modifier = Modifier.fillMaxSize().padding(16.dp), contentAlignment = badge.alignment) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .background(badge.color.copy(alpha = progress * 0.85f), RoundedCornerShape(50))
+                .padding(horizontal = 10.dp, vertical = 6.dp)
+        ) {
+            Icon(
+                imageVector = badge.icon,
+                contentDescription = null,
+                tint = Color.White.copy(alpha = progress),
+                modifier = Modifier.size(14.dp)
+            )
+            Text(
+                text = badge.label,
+                color = Color.White.copy(alpha = progress),
+                fontSize = 12.sp,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(start = 4.dp)
+            )
+        }
     }
 }

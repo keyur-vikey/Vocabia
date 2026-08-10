@@ -29,7 +29,7 @@ All major decisions confirmed. Remaining **(confirm)** items are minor/cosmetic.
 - [x] Repo init (git) + folder structure (`/android`, `/ios-shell`, `/content-pipeline`, `/docs`)
 - [x] Android project skeleton (Kotlin, Compose, min SDK 29 / Android 10)
 - [x] Empty iOS Xcode project shell placeholder (real `.xcodeproj` needs Xcode on a Mac — see note in `/ios-shell`)
-- [ ] Firebase project created (Auth + Firestore) — **needs you**: create project at console.firebase.google.com, I'll wire the SDK once it exists
+- [x] Firebase project created (Auth + Firestore), `google-services.json` placed in `android/app/` (gitignored) and SDK wired into Gradle
 - [x] Define word-entry JSON schema (see Phase 1)
 
 ## Phase 1 — Content model & data pipeline

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.vocabia.app"
+    namespace = "com.mithun.vocabia"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.vocabia.app"
+        applicationId = "com.mithun.vocabia"
         minSdk = 29
         targetSdk = 34
         versionCode = 1

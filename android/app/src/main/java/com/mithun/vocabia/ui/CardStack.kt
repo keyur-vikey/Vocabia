@@ -87,8 +87,6 @@ private fun SwipeableTopCard(
         else -> Color.Transparent
     }
 
-    val accent = categoryColor(word.category)
-
     Card(
         modifier = Modifier
             .fillMaxWidth(0.78f)
@@ -135,12 +133,11 @@ private fun SwipeableTopCard(
                     }
                 }
             },
-        colors = CardDefaults.cardColors(containerColor = accent.copy(alpha = 0.06f)),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
         shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        border = androidx.compose.foundation.BorderStroke(1.dp, accent.copy(alpha = 0.25f))
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
-        Box(modifier = Modifier.fillMaxSize().background(dragTint), contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxSize().background(dragTint)) {
             WordCardContent(word = word, revealCount = revealCount)
         }
     }

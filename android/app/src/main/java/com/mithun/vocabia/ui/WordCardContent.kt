@@ -103,14 +103,14 @@ private fun HeaderBlock(word: WordEntity, revealed: Set<String>, accent: Color) 
     }
 
     if ("meaning" in revealed) {
-        Section(title = "Meaning", accent = accent) {
-            Text(text = word.translation, fontSize = 18.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
-        }
+        Text(
+            text = word.translation,
+            fontSize = 18.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth().padding(top = 12.dp)
+        )
     }
-}
 
-@Composable
-private fun BodyBlock(word: WordEntity, revealed: Set<String>, accent: Color) {
     val sentences = listOf(word.sentence1, word.sentence2, word.sentence3)
     val translations = listOf(word.sentenceTranslation1, word.sentenceTranslation2, word.sentenceTranslation3)
     val revealedSentenceCount = listOf("sentence1", "sentence2", "sentence3").count { it in revealed }
@@ -132,7 +132,10 @@ private fun BodyBlock(word: WordEntity, revealed: Set<String>, accent: Color) {
             }
         }
     }
+}
 
+@Composable
+private fun BodyBlock(word: WordEntity, revealed: Set<String>, accent: Color) {
     if ("grammar" in revealed) {
         Section(title = "Grammar", accent = accent) {
             GrammarInfo(word)

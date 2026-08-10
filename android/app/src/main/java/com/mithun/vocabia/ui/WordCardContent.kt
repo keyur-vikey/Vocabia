@@ -1,9 +1,11 @@
 package com.mithun.vocabia.ui
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -14,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -41,66 +44,98 @@ fun WordCardContent(word: WordEntity, revealCount: Int) {
     val stages = stagesFor(word)
     val revealed = stages.take(revealCount).toSet()
     val accent = categoryColor(word.category)
+    val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
-            .padding(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // header section: category chip + word
-        CategoryChip(word.category, accent)
-        Text(
-            text = word.word,
-            fontSize = 34.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(top = 10.dp)
-        )
-        if ("article" in revealed && word.article != null) {
-            Text(
-                text = "Article: ${word.article}",
-                fontSize = 15.sp,
-                color = accent,
-                fontWeight = FontWeight.SemiBold,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 2.dp)
-            )
-        }
-
-        if ("meaning" in revealed) {
-            Section(title = "Meaning", accent = accent) {
-                Text(text = word.translation, fontSize = 18.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+    if (isLandscape) {
+        Row(modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(20.dp)) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                HeaderBlock(word, revealed, accent)
+            }
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .padding(start = 16.dp)
+                    .verticalScroll(rememberScrollState())
+            ) {
+                BodyBlock(word, revealed, accent)
             }
         }
+    } else {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .padding(20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            HeaderBlock(word, revealed, accent)
+            BodyBlock(word, revealed, accent)
+        }
+    }
+}
 
-        val sentences = listOf(word.sentence1, word.sentence2, word.sentence3)
-        val translations = listOf(word.sentenceTranslation1, word.sentenceTranslation2, word.sentenceTranslation3)
-        val revealedSentenceCount = listOf("sentence1", "sentence2", "sentence3").count { it in revealed }
-        if (revealedSentenceCount > 0) {
-            Section(title = "Examples", accent = accent) {
-                Column {
-                    for (i in 0 until revealedSentenceCount) {
-                        if (i > 0) androidx.compose.foundation.layout.Spacer(Modifier.padding(top = 6.dp))
-                        Text(text = "${i + 1}. ${sentences[i]}", fontSize = 15.sp)
-                        translations[i]?.let {
-                            Text(
-                                text = it,
-                                fontSize = 13.sp,
-                                color = Color.Gray,
-                                modifier = Modifier.padding(top = 2.dp, bottom = 8.dp)
-                            )
-                        }
+@Composable
+private fun HeaderBlock(word: WordEntity, revealed: Set<String>, accent: Color) {
+    CategoryChip(word.category, accent)
+    Text(
+        text = word.word,
+        fontSize = 34.sp,
+        fontWeight = FontWeight.Bold,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.padding(top = 10.dp)
+    )
+    if ("article" in revealed && word.article != null) {
+        Text(
+            text = "Article: ${word.article}",
+            fontSize = 15.sp,
+            color = accent,
+            fontWeight = FontWeight.SemiBold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(top = 2.dp)
+        )
+    }
+
+    if ("meaning" in revealed) {
+        Section(title = "Meaning", accent = accent) {
+            Text(text = word.translation, fontSize = 18.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+        }
+    }
+}
+
+@Composable
+private fun BodyBlock(word: WordEntity, revealed: Set<String>, accent: Color) {
+    val sentences = listOf(word.sentence1, word.sentence2, word.sentence3)
+    val translations = listOf(word.sentenceTranslation1, word.sentenceTranslation2, word.sentenceTranslation3)
+    val revealedSentenceCount = listOf("sentence1", "sentence2", "sentence3").count { it in revealed }
+    if (revealedSentenceCount > 0) {
+        Section(title = "Examples", accent = accent) {
+            Column {
+                for (i in 0 until revealedSentenceCount) {
+                    if (i > 0) androidx.compose.foundation.layout.Spacer(Modifier.padding(top = 6.dp))
+                    Text(text = "${i + 1}. ${sentences[i]}", fontSize = 15.sp)
+                    translations[i]?.let {
+                        Text(
+                            text = it,
+                            fontSize = 13.sp,
+                            color = Color.Gray,
+                            modifier = Modifier.padding(top = 2.dp, bottom = 8.dp)
+                        )
                     }
                 }
             }
         }
+    }
 
-        if ("grammar" in revealed) {
-            Section(title = "Grammar", accent = accent) {
-                GrammarInfo(word)
-            }
+    if ("grammar" in revealed) {
+        Section(title = "Grammar", accent = accent) {
+            GrammarInfo(word)
         }
     }
 }

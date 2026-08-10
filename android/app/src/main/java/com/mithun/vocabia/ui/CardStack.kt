@@ -98,60 +98,65 @@ private fun SwipeableTopCard(
         else -> Color.Transparent
     }
 
-    Card(
-        modifier = Modifier
-            .fillMaxWidth(0.78f)
-            .fillMaxHeight(0.8f)
-            .graphicsLayer {
-                translationX = offsetX.value
-                translationY = offsetY.value
-                rotationZ = offsetX.value / 25f
-            }
-            .clickable {
-                if (revealCount < maxReveal) revealCount += 1
-            }
-            .pointerInput(word.id) {
-                detectDragGestures(
-                    onDragEnd = {
-                        val x = offsetX.value
-                        val y = offsetY.value
-                        scope.launch {
-                            when {
-                                y > SWIPE_THRESHOLD_PX && y > abs(x) -> {
-                                    offsetY.animateTo(1200f, tween(250))
-                                    onSwiped(word, SwipeDirection.DOWN)
-                                }
-                                x > SWIPE_THRESHOLD_PX -> {
-                                    offsetX.animateTo(1200f, tween(250))
-                                    onSwiped(word, SwipeDirection.RIGHT)
-                                }
-                                x < -SWIPE_THRESHOLD_PX -> {
-                                    offsetX.animateTo(-1200f, tween(250))
-                                    onSwiped(word, SwipeDirection.LEFT)
-                                }
-                                else -> {
-                                    offsetX.animateTo(0f, tween(200))
-                                    offsetY.animateTo(0f, tween(200))
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(0.78f)
+                .fillMaxHeight(0.8f)
+                .graphicsLayer {
+                    translationX = offsetX.value
+                    translationY = offsetY.value
+                    rotationZ = offsetX.value / 25f
+                }
+                .clickable {
+                    if (revealCount < maxReveal) revealCount += 1
+                }
+                .pointerInput(word.id) {
+                    detectDragGestures(
+                        onDragEnd = {
+                            val x = offsetX.value
+                            val y = offsetY.value
+                            scope.launch {
+                                when {
+                                    y > SWIPE_THRESHOLD_PX && y > abs(x) -> {
+                                        offsetY.animateTo(1200f, tween(250))
+                                        onSwiped(word, SwipeDirection.DOWN)
+                                    }
+                                    x > SWIPE_THRESHOLD_PX -> {
+                                        offsetX.animateTo(1200f, tween(250))
+                                        onSwiped(word, SwipeDirection.RIGHT)
+                                    }
+                                    x < -SWIPE_THRESHOLD_PX -> {
+                                        offsetX.animateTo(-1200f, tween(250))
+                                        onSwiped(word, SwipeDirection.LEFT)
+                                    }
+                                    else -> {
+                                        offsetX.animateTo(0f, tween(200))
+                                        offsetY.animateTo(0f, tween(200))
+                                    }
                                 }
                             }
                         }
+                    ) { change, dragAmount ->
+                        change.consume()
+                        scope.launch {
+                            offsetX.snapTo(offsetX.value + dragAmount.x)
+                            offsetY.snapTo(offsetY.value + dragAmount.y)
+                        }
                     }
-                ) { change, dragAmount ->
-                    change.consume()
-                    scope.launch {
-                        offsetX.snapTo(offsetX.value + dragAmount.x)
-                        offsetY.snapTo(offsetY.value + dragAmount.y)
-                    }
-                }
-            },
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-    ) {
-        Box(modifier = Modifier.fillMaxSize().background(dragTint)) {
-            WordCardContent(word = word, revealCount = revealCount)
-            SwipeIndicator(offsetX = offsetX.value, offsetY = offsetY.value)
+                },
+            colors = CardDefaults.cardColors(containerColor = Color.White),
+            shape = RoundedCornerShape(20.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        ) {
+            Box(modifier = Modifier.fillMaxSize().background(dragTint)) {
+                WordCardContent(word = word, revealCount = revealCount)
+            }
         }
+
+        // rendered outside the card so the badge can sit at the true screen edges,
+        // not clipped by the card's rounded corners / smaller bounds
+        SwipeIndicator(offsetX = offsetX.value, offsetY = offsetY.value)
     }
 }
 
@@ -171,12 +176,12 @@ private fun SwipeIndicator(offsetX: Float, offsetY: Float) {
         offsetY > abs(offsetX) && offsetY > 0 ->
             SwipeBadge(Icons.Filled.Star, "Mastered", Color(0xFFCA8A04), Alignment.TopCenter)
         offsetX > 0 ->
-            SwipeBadge(Icons.Filled.Check, "Remembered", Color(0xFF16A34A), Alignment.TopEnd)
+            SwipeBadge(Icons.Filled.Check, "Remembered", Color(0xFF16A34A), Alignment.CenterEnd)
         else ->
-            SwipeBadge(Icons.Filled.Close, "Forgot", Color(0xFFDC2626), Alignment.TopStart)
+            SwipeBadge(Icons.Filled.Close, "Forgot", Color(0xFFDC2626), Alignment.CenterStart)
     }
 
-    Box(modifier = Modifier.fillMaxSize().padding(16.dp), contentAlignment = badge.alignment) {
+    Box(modifier = Modifier.fillMaxSize().padding(20.dp), contentAlignment = badge.alignment) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier

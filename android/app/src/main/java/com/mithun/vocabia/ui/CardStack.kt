@@ -49,7 +49,7 @@ fun CardStack(
                 Card(
                     modifier = Modifier
                         .fillMaxWidth(0.78f)
-                        .fillMaxHeight(0.72f)
+                        .fillMaxHeight(0.8f)
                         .graphicsLayer {
                             translationX = depth * 10f
                             translationY = depth * 14f
@@ -90,7 +90,7 @@ private fun SwipeableTopCard(
     Card(
         modifier = Modifier
             .fillMaxWidth(0.78f)
-            .fillMaxHeight(0.72f)
+            .fillMaxHeight(0.8f)
             .graphicsLayer {
                 translationX = offsetX.value
                 translationY = offsetY.value

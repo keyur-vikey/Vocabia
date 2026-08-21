@@ -1,0 +1,25 @@
+@namespace Vocabia.Shared
+@inject PracticeRepository Repository
+
+@if (_loading)
+{
+    <div class="center-fill"><div class="spinner"></div></div>
+}
+else
+{
+    <StatsScreen CategoryStats="_categoryStats" OnBack="OnBack" />
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public EventCallback OnBack { get; set; }
+
+    private bool _loading = true;
+    private List<PracticeRepository.CategoryStats> _categoryStats = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        _categoryStats = await Repository.StatsByCategoryAsync();
+        _loading = false;
+    }
+}

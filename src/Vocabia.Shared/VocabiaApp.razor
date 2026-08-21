@@ -1,0 +1,26 @@
+@namespace Vocabia.Shared
+
+@switch (_screen)
+{
+    case Screen.Home:
+        <HomeScreen OnNavigate="Navigate" />
+        break;
+    case Screen.Practice:
+        <DeckScreen OnBack="() => Navigate(Screen.Home)" />
+        break;
+    case Screen.Progress:
+        <ProgressScreen OnBack="() => Navigate(Screen.Home)" />
+        break;
+}
+
+@code {
+    public enum Screen { Home, Practice, Progress }
+
+    private Screen _screen = Screen.Home;
+
+    private void Navigate(Screen screen)
+    {
+        _screen = screen;
+        StateHasChanged();
+    }
+}

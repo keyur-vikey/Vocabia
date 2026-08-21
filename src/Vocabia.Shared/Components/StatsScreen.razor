@@ -1,0 +1,41 @@
+@namespace Vocabia.Shared
+
+<div class="stats-screen">
+    <div class="stats-header">
+        <button class="icon-button" @onclick="() => OnBack.InvokeAsync()">&#8592;</button>
+        <div class="stats-title">Progress</div>
+    </div>
+
+    <div class="stats-overall">
+        <div class="stats-overall-label">@_overallFinished / @_overallTotal words finished</div>
+        <div class="progress-track">
+            <div class="progress-fill" style="width: @(_overallFraction * 100)%"></div>
+        </div>
+    </div>
+
+    <div class="stats-categories">
+        @foreach (var stat in CategoryStats)
+        {
+            <CategoryStatsRow Stat="stat" />
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public List<PracticeRepository.CategoryStats> CategoryStats { get; set; } = [];
+
+    [Parameter, EditorRequired]
+    public EventCallback OnBack { get; set; }
+
+    private int _overallTotal;
+    private int _overallFinished;
+    private double _overallFraction;
+
+    protected override void OnParametersSet()
+    {
+        _overallTotal = CategoryStats.Sum(s => s.Total);
+        _overallFinished = CategoryStats.Sum(s => s.Finished);
+        _overallFraction = _overallTotal > 0 ? (double)_overallFinished / _overallTotal : 0;
+    }
+}

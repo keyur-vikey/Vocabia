@@ -1,0 +1,53 @@
+@namespace Vocabia.Shared
+
+@switch (Word.Category)
+{
+    case "verb":
+        <div>
+            <div class="grammar-strong">Perfect form: @(Word.VerbPerfectForm ?? "-")</div>
+            <div>Auxiliary: @(Word.VerbAuxiliary ?? "-")</div>
+            @if (Word.VerbSeparable == true)
+            {
+                <div>Separable prefix: @(Word.VerbSeparablePrefix ?? "-")</div>
+            }
+            <div class="grammar-strong" style="margin-top: 8px">Present tense:</div>
+            @foreach (var (pronoun, form) in PresentTenseForms())
+            {
+                <div class="grammar-row">
+                    <span>@pronoun</span>
+                    <span>@(form ?? "-")</span>
+                </div>
+            }
+        </div>
+        break;
+    case "noun":
+        <div>
+            <div>Plural: @(Word.NounPlural ?? "-")</div>
+            <div>Gender: @(Word.NounGender ?? "-")</div>
+        </div>
+        break;
+    case "adjective":
+        <div>
+            <div>Comparative: @(Word.AdjectiveComparative ?? "-")</div>
+            <div>Superlative: @(Word.AdjectiveSuperlative ?? "-")</div>
+        </div>
+        break;
+    case "preposition":
+        <div>Case: @(Word.PrepositionCase ?? "-")</div>
+        break;
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public WordEntry Word { get; set; } = null!;
+
+    private IEnumerable<(string Pronoun, string? Form)> PresentTenseForms() =>
+    [
+        ("ich", Word.VerbPresentIch),
+        ("du", Word.VerbPresentDu),
+        ("er/sie/es", Word.VerbPresentErSieEs),
+        ("wir", Word.VerbPresentWir),
+        ("ihr", Word.VerbPresentIhr),
+        ("sie/Sie", Word.VerbPresentSieSie),
+    ];
+}

@@ -1,0 +1,65 @@
+@namespace Vocabia.Shared
+@inject PracticeRepository Repository
+
+<div class="deck-screen">
+    @if (_loading)
+    {
+        <div class="center-fill"><div class="spinner"></div></div>
+    }
+    else
+    {
+        <div class="deck-header">
+            <button class="icon-button" @onclick="() => OnBack.InvokeAsync()">&#8592;</button>
+            <div class="deck-progress-label">Finished: @_finishedCount / @_totalCount</div>
+        </div>
+
+        <div class="deck-body">
+            @if (_currentIndex >= _cards.Count)
+            {
+                <div class="center-fill session-complete">Session complete!</div>
+            }
+            else
+            {
+                <CardStackView Cards="_cards" CurrentIndex="_currentIndex" OnSwiped="HandleSwipedAsync" />
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public EventCallback OnBack { get; set; }
+
+    private bool _loading = true;
+    private List<PracticeCard> _cards = [];
+    private int _currentIndex;
+    private int _finishedCount;
+    private int _totalCount;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadNewSessionAsync();
+        _loading = false;
+    }
+
+    private async Task LoadNewSessionAsync()
+    {
+        await Repository.AdvanceSessionAsync();
+        _cards = await Repository.BuildSessionAsync();
+        _currentIndex = 0;
+        (_finishedCount, _totalCount) = await Repository.StatsAsync();
+    }
+
+    private async Task HandleSwipedAsync(SwipeResult result)
+    {
+        await Repository.RecordSwipeAsync(result.Word, result.Direction);
+        _currentIndex += 1;
+
+        if (_currentIndex >= _cards.Count)
+        {
+            await LoadNewSessionAsync();
+        }
+
+        StateHasChanged();
+    }
+}

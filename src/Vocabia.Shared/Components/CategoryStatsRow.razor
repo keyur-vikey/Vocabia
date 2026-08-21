@@ -1,0 +1,32 @@
+@namespace Vocabia.Shared
+
+<div class="category-stats-row">
+    <div class="category-stats-heading">
+        <span class="category-stats-icon" style="color: @accent">@CategoryStyle.Icon(Stat.Category)</span>
+        <span class="category-stats-label">@CategoryStyle.Label(Stat.Category)</span>
+        <span class="category-stats-spacer"></span>
+        <span class="category-stats-count">@Stat.Finished/@Stat.Total finished</span>
+    </div>
+    <div class="category-stats-bar">
+        @if (Stat.Finished > 0)
+        {
+            <div class="bar-segment" style="flex-grow: @Stat.Finished; background: @accent"></div>
+        }
+        @if (Stat.Learning > 0)
+        {
+            <div class="bar-segment" style="flex-grow: @Stat.Learning; background: @accent66"></div>
+        }
+        @if (Stat.New > 0)
+        {
+            <div class="bar-segment" style="flex-grow: @Stat.New; background: transparent"></div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public PracticeRepository.CategoryStats Stat { get; set; } = null!;
+
+    private string accent => CategoryStyle.Color(Stat.Category);
+    private string accent66 => CategoryStyle.Color(Stat.Category) + "66";
+}

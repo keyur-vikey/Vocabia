@@ -1,0 +1,150 @@
+@namespace Vocabia.Shared
+
+<div class="card-stack">
+    @for (var depth = 2; depth >= 1; depth--)
+    {
+        var peekIndex = CurrentIndex + depth;
+        if (peekIndex < Cards.Count)
+        {
+            var word = Cards[peekIndex].Word;
+            <div class="peek-card"
+                 style="background: @(CategoryStyle.Color(word.Category))33;
+                        transform: translate(@(depth * 10)px, @(depth * 14)px) rotate(@(depth * 3)deg);
+                        opacity: @((0.5 + 0.15 * (3 - depth)).ToString(System.Globalization.CultureInfo.InvariantCulture));">
+            </div>
+        }
+    }
+
+    @if (CurrentIndex < Cards.Count)
+    {
+        var card = Cards[CurrentIndex];
+        <div @key="card.Word.Id"
+             class="practice-card"
+             style="@CardStyle()"
+             @onpointerdown="OnPointerDown"
+             @onpointermove="OnPointerMove"
+             @onpointerup="OnPointerUp"
+             @onpointercancel="OnPointerUp">
+            <div class="drag-tint" style="background: @DragTintColor()"></div>
+            <WordCardContent Word="card.Word" RevealCount="_revealCount" />
+        </div>
+
+        <SwipeBadgeOverlay OffsetX="_offsetX" OffsetY="_offsetY" Threshold="SwipeThreshold" />
+    }
+</div>
+
+@code {
+    private const double SwipeThreshold = 120;
+    private const double TapMoveTolerance = 6;
+
+    [Parameter, EditorRequired]
+    public List<PracticeCard> Cards { get; set; } = [];
+
+    [Parameter, EditorRequired]
+    public int CurrentIndex { get; set; }
+
+    [Parameter, EditorRequired]
+    public EventCallback<SwipeResult> OnSwiped { get; set; }
+
+    private string? _activeWordId;
+    private double _offsetX;
+    private double _offsetY;
+    private bool _dragging;
+    private bool _animating;
+    private double _startClientX;
+    private double _startClientY;
+    private int _revealCount;
+
+    protected override void OnParametersSet()
+    {
+        var wordId = CurrentIndex < Cards.Count ? Cards[CurrentIndex].Word.Id : null;
+        if (wordId != _activeWordId)
+        {
+            _activeWordId = wordId;
+            _offsetX = 0;
+            _offsetY = 0;
+            _revealCount = 0;
+            _dragging = false;
+            _animating = false;
+        }
+    }
+
+    private string CardStyle()
+    {
+        var transition = _dragging ? "none" : "transform 220ms ease-out";
+        var rotation = _offsetX / 25.0;
+        return $"transform: translate({_offsetX.ToString(System.Globalization.CultureInfo.InvariantCulture)}px, {_offsetY.ToString(System.Globalization.CultureInfo.InvariantCulture)}px) rotate({rotation.ToString(System.Globalization.CultureInfo.InvariantCulture)}deg); transition: {transition};";
+    }
+
+    private string DragTintColor()
+    {
+        if (_offsetX > 60) return "rgba(34,197,94,0.25)";
+        if (_offsetX < -60) return "rgba(239,68,68,0.25)";
+        if (_offsetY > 60) return "rgba(250,204,21,0.25)";
+        return "transparent";
+    }
+
+    private void OnPointerDown(Microsoft.AspNetCore.Components.Web.PointerEventArgs e)
+    {
+        if (_animating) return;
+        _dragging = true;
+        _startClientX = e.ClientX;
+        _startClientY = e.ClientY;
+    }
+
+    private void OnPointerMove(Microsoft.AspNetCore.Components.Web.PointerEventArgs e)
+    {
+        if (!_dragging) return;
+        _offsetX = e.ClientX - _startClientX;
+        _offsetY = e.ClientY - _startClientY;
+    }
+
+    private async Task OnPointerUp(Microsoft.AspNetCore.Components.Web.PointerEventArgs e)
+    {
+        if (!_dragging) return;
+        _dragging = false;
+
+        var word = Cards[CurrentIndex].Word;
+        var absX = Math.Abs(_offsetX);
+        var absY = Math.Abs(_offsetY);
+
+        if (absX < TapMoveTolerance && absY < TapMoveTolerance)
+        {
+            var max = WordCardContent.MaxRevealCount(word);
+            if (_revealCount < max) _revealCount += 1;
+            return;
+        }
+
+        if (_offsetY > SwipeThreshold && _offsetY > absX)
+        {
+            await CommitSwipeAsync(word, SwipeDirection.Down, 0, 1200);
+        }
+        else if (_offsetX > SwipeThreshold)
+        {
+            await CommitSwipeAsync(word, SwipeDirection.Right, 1200, _offsetY);
+        }
+        else if (_offsetX < -SwipeThreshold)
+        {
+            await CommitSwipeAsync(word, SwipeDirection.Left, -1200, _offsetY);
+        }
+        else
+        {
+            _animating = true;
+            _offsetX = 0;
+            _offsetY = 0;
+            StateHasChanged();
+            await Task.Delay(220);
+            _animating = false;
+        }
+    }
+
+    private async Task CommitSwipeAsync(WordEntry word, SwipeDirection direction, double targetX, double targetY)
+    {
+        _animating = true;
+        _offsetX = targetX;
+        _offsetY = targetY;
+        StateHasChanged();
+        await Task.Delay(220);
+        await OnSwiped.InvokeAsync(new SwipeResult(word, direction));
+    }
+}

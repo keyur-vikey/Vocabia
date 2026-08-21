@@ -1,0 +1,46 @@
+@namespace Vocabia.Shared
+
+@if (_progress >= 0.15)
+{
+    <div class="swipe-badge @_alignmentClass" style="background: @BadgeColor(@_progress);">
+        <span>@_icon</span>
+        <span>@_label</span>
+    </div>
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public double OffsetX { get; set; }
+
+    [Parameter, EditorRequired]
+    public double OffsetY { get; set; }
+
+    [Parameter, EditorRequired]
+    public double Threshold { get; set; }
+
+    private double _progress;
+    private string _icon = "";
+    private string _label = "";
+    private string _alignmentClass = "";
+    private string _baseColor = "";
+
+    protected override void OnParametersSet()
+    {
+        _progress = Math.Clamp(Math.Max(Math.Abs(OffsetX), Math.Abs(OffsetY)) / Threshold, 0, 1);
+
+        if (OffsetY > Math.Abs(OffsetX) && OffsetY > 0)
+        {
+            (_icon, _label, _baseColor, _alignmentClass) = ("★", "Mastered", "202,138,4", "badge-top");
+        }
+        else if (OffsetX > 0)
+        {
+            (_icon, _label, _baseColor, _alignmentClass) = ("✓", "Remembered", "22,163,74", "badge-end");
+        }
+        else
+        {
+            (_icon, _label, _baseColor, _alignmentClass) = ("✕", "Forgot", "220,38,38", "badge-start");
+        }
+    }
+
+    private string BadgeColor(double progress) => $"rgba({_baseColor},{(progress * 0.85).ToString(System.Globalization.CultureInfo.InvariantCulture)})";
+}

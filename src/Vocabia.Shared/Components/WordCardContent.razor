@@ -1,0 +1,79 @@
+@namespace Vocabia.Shared
+
+<div class="word-card-content">
+    <div class="category-chip" style="background: @accent">
+        <span>@CategoryStyle.Icon(Word.Category)</span>
+        <span>@CategoryStyle.Label(Word.Category).ToUpperInvariant()</span>
+    </div>
+
+    <div class="word-title">@Word.Word</div>
+
+    @if (Word.Article is not null && Revealed.Contains("article"))
+    {
+        <div class="word-article" style="color: @accent">Article: @Word.Article</div>
+    }
+
+    @if (Revealed.Contains("meaning"))
+    {
+        <div class="word-translation">@Word.Translation</div>
+    }
+
+    @if (_revealedSentenceCount > 0)
+    {
+        <div class="section" style="--accent: @accent">
+            <div class="section-title">Examples</div>
+            @for (var i = 0; i < _revealedSentenceCount; i++)
+            {
+                var idx = i;
+                <div class="sentence-block">
+                    <div class="sentence">@(idx + 1). @_sentences[idx]</div>
+                    @if (_translations[idx] is { } translation)
+                    {
+                        <div class="sentence-translation">@translation</div>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+    @if (Revealed.Contains("grammar"))
+    {
+        <div class="section" style="--accent: @accent">
+            <div class="section-title">Grammar</div>
+            <GrammarInfo Word="Word" />
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public WordEntry Word { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public int RevealCount { get; set; }
+
+    private string accent => CategoryStyle.Color(Word.Category);
+
+    private static readonly string[] BaseStages = ["meaning", "sentence1", "sentence2", "sentence3", "grammar"];
+
+    private string[] Stages => Word.Article is not null
+        ? ["meaning", "article", "sentence1", "sentence2", "sentence3", "grammar"]
+        : BaseStages;
+
+    public static int MaxRevealCount(WordEntry word) =>
+        word.Article is not null ? 6 : 5;
+
+    private HashSet<string> Revealed => Stages.Take(RevealCount).ToHashSet();
+
+    private string?[] _sentences = [];
+    private string?[] _translations = [];
+    private int _revealedSentenceCount;
+
+    protected override void OnParametersSet()
+    {
+        _sentences = [Word.Sentence1, Word.Sentence2, Word.Sentence3];
+        _translations = [Word.SentenceTranslation1, Word.SentenceTranslation2, Word.SentenceTranslation3];
+        var revealed = Revealed;
+        _revealedSentenceCount = new[] { "sentence1", "sentence2", "sentence3" }.Count(revealed.Contains);
+    }
+}

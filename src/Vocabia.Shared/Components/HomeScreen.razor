@@ -1,0 +1,29 @@
+@namespace Vocabia.Shared
+
+<div class="home-screen">
+    <div class="home-title">Vocabia</div>
+    <div class="home-subtitle">Learn words. Grow everyday.</div>
+
+    <div class="menu-item" style="--accent: #3B82F6" @onclick="() => OnNavigate.InvokeAsync(VocabiaApp.Screen.Practice)">
+        <div class="menu-icon">&#127891;</div>
+        <div class="menu-text">
+            <div class="menu-title">Practice</div>
+            <div class="menu-subtitle">Review today's deck</div>
+        </div>
+        <div class="menu-chevron">&#8250;</div>
+    </div>
+
+    <div class="menu-item" style="--accent: #22C55E" @onclick="() => OnNavigate.InvokeAsync(VocabiaApp.Screen.Progress)">
+        <div class="menu-icon">&#128202;</div>
+        <div class="menu-text">
+            <div class="menu-title">Progress</div>
+            <div class="menu-subtitle">See how many words you've learned</div>
+        </div>
+        <div class="menu-chevron">&#8250;</div>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public EventCallback<VocabiaApp.Screen> OnNavigate { get; set; }
+}

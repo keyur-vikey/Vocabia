@@ -13,6 +13,13 @@ ios-shell/**/*.xcuserstate
 ios-shell/**/xcuserdata/
 ios-shell/**/DerivedData/
 
+# .NET / MAUI
+src/**/bin/
+src/**/obj/
+publish/
+
 # OS / editor
 .DS_Store
 Thumbs.db
+.vs/
+
